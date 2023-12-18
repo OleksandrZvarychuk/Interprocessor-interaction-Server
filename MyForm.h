@@ -55,9 +55,9 @@ namespace WFtry2 {
 	private: System::Windows::Forms::Label^ label2;
 
 	private:
-		// Остання отримана відповідь від сервера
+		
 		String^ lastReceivedMessage;
-		// Таймер для перевірки сервера
+	
 
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ User;
@@ -359,9 +359,9 @@ namespace WFtry2 {
 			try {
 				server = gcnew Server();
 				
-				// Запускаємо сервер у окремому потоці
+				
 				Thread^ serverThread = gcnew Thread(gcnew ThreadStart(server, &Server::StartServer));
-				serverThread->IsBackground = true; // Щоб при закритті форми припинити роботу сервера
+				serverThread->IsBackground = true; 
 				serverThread->Start();
 				ServerLoadChat();
 				ReadIncomingMessageFromFile();
@@ -407,14 +407,14 @@ namespace WFtry2 {
 		int GetIndexOfSocket(List<SOCKET>^ socketList, SOCKET clientSocket) {
 			for (int i = 0; i < socketList->Count; i++) {
 				if (socketList[i] == clientSocket) {
-					return i; // Повертаємо індекс, якщо знайдено співпадіння
+					return i;
 				}
 			}
-			return -1; // Якщо не знайдено співпадінь
+			return -1; 
 		}
 
 
-		// Метод для оновлення текстового поля з іншого потока (через Invoke)
+		
 		void UpdateTextBox(String^ message) {
 			/*textBox1->Text = message;*/
 		}
